@@ -1,12 +1,9 @@
 import { useEffect, useState, useRef } from 'react';
 import './App.css';
+import { scales } from './scales';
 
 function App() {
-  const [scale, setScale] = useState({
-    name: "C major",
-    notes: ["C", "D", "E", "F", "G", "A", "B"],
-  });
-
+  const [scale, setScale] = useState(scales[0]);
   const [notes, setNotes] = useState({
     e: ['E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E'],
     a: ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', "A"],
@@ -14,13 +11,33 @@ function App() {
     g: ['G', 'G#', 'A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G'],
     b: ['B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
   });
+  const [piano, setPiano] = useState(['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']);
+
+  const innerSeparate = (arr, separator) => arr.map((v, i, a) => v + (i < a.length - 1 ? ` ${separator} ` : ''))
 
   return (
     <div className="App">
-      <main className="container">
-        <h2>{scale.name}</h2>
-        <p>{scale.notes}</p>
+      <header className="container">
+        <p>{scale.name} ({scale.altName})</p>
+        <p>Intervals: {innerSeparate(scale.intervals, '-')}</p>
+        <h2>{innerSeparate(scale.notes, '-')}</h2>
+      </header>
 
+      <main className="container">
+
+        <section className="piano">
+          <div className="piano-container">
+            {piano.map((note, i, arr) => {
+              const reactKey = `${note}-${i}`;
+              const active = scale.notes.includes(note).toString();
+              const pianoKey = note.includes("#") ? "black" : "white";
+              const classes = `key ${pianoKey} ${note}`;
+              return <div key={reactKey} note={note} active={active} className={classes}><p>{note}</p></div>
+            })}
+          </div>
+        </section>
+
+        {/* TODO: Remake all this into flex */}
         <div className="guitar-neck">
 
           <div className="fret first"></div>
