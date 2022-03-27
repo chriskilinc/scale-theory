@@ -26,6 +26,15 @@
   flex-direction: column;
 }
 
+footer {
+  position: fixed;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+  padding: 1em;
+  bottom: 0;
+  right: 0;
+  
+}
+
 header h2 {
   font-size: 2.5em;
 }
