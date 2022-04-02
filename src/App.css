@@ -6,17 +6,41 @@
   --piano-key-white-width: calc(var(--piano-key-white-height) / 4);
   --piano-key-black-height: calc(var(--piano-key-white-height) / 1.5);
   --piano-key-black-width: calc(var(--piano-key-black-height) / 6);
+  --color-white: #f5f5f5;
+
 }
 
 .App {
   display: flex;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   background: #282c34;
   color: #f5f5f5;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.main {
+}
+
+.navigation {
+  display: flex;
+  width: 100%;
+}
+
+.navigation-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-content {
+  margin-bottom: 1em;
+}
+
+.instruments-options .icon {
+  padding: 0 0.5em;
 }
 
 .container {
@@ -24,6 +48,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding: 2em 2em 0 2em;
 }
 
 footer {
@@ -32,14 +57,33 @@ footer {
   padding: 1em;
   bottom: 0;
   right: 0;
-  
 }
 
 header h2 {
   font-size: 2.5em;
 }
 
+.header-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+a.icon {
+  display: inline-flex;
+  flex-direction: column;
+}
+a.icon svg {
+  height: 3.5em;
+  width: 3.5em;
+  fill: #fff;
+}
+
 /* PIANO */
+.piano.hidden{
+  display: none;
+}
 .piano-container {
   display: flex;
   flex-direction: row;
@@ -50,6 +94,12 @@ header h2 {
   justify-content: center;
   align-items: flex-end;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
+.piano .key:last-child {
+  border-radius: 0 25px 25px 0;
+}
+.piano .key:first-child {
+  border-radius: 25px 0 0 25px;
 }
 .piano .key.E,.D,.G,.A,.B {
   margin:0 0 0 var(--piano-key-margin)
@@ -92,20 +142,8 @@ header h2 {
   font-weight: 400;
   src: url(https://fonts.gstatic.com/s/sourcesanspro/v19/6xK3dSBYKcSV-LCoeQqfX1RYOo3qOK7g.ttf) format('truetype');
 } */
-* {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-}
-body {
-  background: #eee;
-  font-family: "Source Sans Pro", sans-serif;
-  letter-spacing: 0.05em;
-}
-h1 {
-  text-transform: uppercase;
-  text-align: center;
-  margin-top: 40px;
+.guitar-neck.hidden{
+  display: none;
 }
 .guitar-neck {
   position: relative;
@@ -286,3 +324,16 @@ h1 {
 }
 
 /* TODO: remake the guitar in flex */
+
+.search {
+  padding: 0.75em 1.5em;
+  background: transparent;
+  border: 2px solid #fff;
+  border-radius: 47px;
+  color: #fff;
+  margin-left: 1em;
+  outline: none;
+}
+.search:focus {
+  border-color: #fff;
+}
