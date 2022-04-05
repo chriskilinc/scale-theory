@@ -7,6 +7,13 @@ export const scales = [
         type: "Ionian",
     },
     {
+        name: "A# Ionian",
+        altName: "A Major",
+        notes: ["A#", "B#", "D", "D#", "E#", "G", "A"],
+        intervals: [2, 2, 1, 2, 2, 2, 1],
+        type: "Ionian",
+    },
+    {
         name: "B Aeolian",
         altName: "B Minor",
         notes: ["B", "C#", "D", "E", "F#", "G", "A"],
@@ -28,4 +35,6 @@ export const scales = [
         type: "Ionian",
     },
 ];
+
+export const chromaticScale = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#'];
 

@@ -1,10 +1,12 @@
 import { useEffect, useState, useRef } from 'react';
 import './App.css';
-import { scales } from './scales';
+import { scales, chromaticScale } from './scales';
 import svgGuitar from "./assets/guitar.svg";
+import { Footer } from './Footer';
+
 
 function App() {
-  const [scale, setScale] = useState(scales[0]);
+  const [scale, setScale] = useState(scales[2]);
   const [notes, setNotes] = useState({
     e: ['E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E'],
     a: ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', "A"],
@@ -15,8 +17,35 @@ function App() {
   const [piano, setPiano] = useState(['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']);
   const [pianoVisible, setPianoVisible] = useState(true);
   const [guitarVisible, setGuitarVisible] = useState(false);
+  const [pianoArranged, setpianoArranged] = useState(false);
 
-  const innerSeparate = (arr, separator) => arr.map((v, i, a) => v + (i < a.length - 1 ? ` ${separator} ` : ''))
+  const arrangedScaleBykey = (key) => {
+    const noteIndex = chromaticScale.findIndex((note) => note == key);
+    const newScale = chromaticScale.slice(noteIndex, chromaticScale.length);
+    newScale.push(...chromaticScale.slice(0, noteIndex));
+    return newScale;
+  }
+
+  useEffect(() => {
+    setPiano(arrangedScaleBykey(scale.notes[0]));
+  },[])
+
+  useEffect(() => {
+    if(piano[piano.length-1].includes("#")) {
+      // last is flat
+      piano.push(piano[0]);
+      setpianoArranged(true);
+    } else if (piano[0].includes("#")) {
+      // first is flat
+      piano.unshift(piano[piano.length -1]);
+      setpianoArranged(true);
+    }
+
+  }, [piano])
+
+  useEffect(() => {
+    pianoArranged && setPiano(piano);
+  },[pianoArranged])
 
   return (
     <div className="App">
@@ -33,8 +62,8 @@ function App() {
 
         <section className="header-content">
           <p>{scale.name} ({scale.altName})</p>
-          <p>Intervals: {innerSeparate(scale.intervals, '-')}</p>
-          <h2>{innerSeparate(scale.notes, '-')}</h2>
+          <p>Intervals: {scale.intervals.join(" - ")}</p>
+          <h2>{scale.notes.join(" - ")}</h2>
         </section>
 
         <div className="instruments-options">
@@ -64,8 +93,9 @@ function App() {
               const reactKey = `${note}-${i}`;
               const active = scale.notes.includes(note).toString();
               const pianoKey = note.includes("#") ? "black" : "white";
+              const isKey = (note == scale.notes[0]).toString();
               const classes = `key ${pianoKey} ${note}`;
-              return <div key={reactKey} note={note} active={active} className={classes}><p>{note}</p></div>
+              return <div key={reactKey} note={note} active={active} isKey={isKey} className={classes}><p>{note}</p></div>
             })}
           </div>
         </section>
@@ -156,11 +186,7 @@ function App() {
             <li>G#</li>
           </ul>
         </div> */}
-        <footer>
-          <a href="https://www.chriskilinc.com" target="_blank" rel="dofollow">chriskilinc</a>
-          <span className="padding-around-s">•</span>
-          <a href="https://github.com/chriskilinc/" target="_blank" rel="noopener nofollow">github</a>
-        </footer>
+        {Footer}
       </main>
     </div >
   );

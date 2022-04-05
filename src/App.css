@@ -1,13 +1,13 @@
 * {
-  --piano-primary: #f5f5f5;
-  --piano-secondary: #373737;
+  --piano-color-primary: #f5f5f5;
+  --piano-color-secondary: #373737;
+  --piano-color-active: #f7cec7;
+  --piano-color-isKey: #e79797;
   --piano-key-white-height: 24em;
   --piano-key-margin: -1.3333em; /* TODO: --piano-key-white-height / 18 and negated */
   --piano-key-white-width: calc(var(--piano-key-white-height) / 4);
   --piano-key-black-height: calc(var(--piano-key-white-height) / 1.5);
   --piano-key-black-width: calc(var(--piano-key-black-height) / 6);
-  --color-white: #f5f5f5;
-
 }
 
 .App {
@@ -116,8 +116,8 @@ a.icon svg {
   height: var(--piano-key-white-height);
   width: var(--piano-key-white-width);
   z-index:1;
-  color: var(--piano-secondary);
-  background:linear-gradient(to bottom,#fff 0%, var(--piano-primary) 100%);
+  color: var(--piano-color-secondary);
+  background:linear-gradient(to bottom,#fff 0%, var(--piano-color-primary) 100%);
 }
 
 .piano .key.black{
@@ -125,13 +125,18 @@ a.icon svg {
   width:var(--piano-key-black-width);
   margin:0 0 0 var(--piano-key-margin);
   z-index:2;
-  color: var(--piano-primary);
-  background:linear-gradient(45deg,var(--piano-secondary) 50%,#000 100%)
+  color: var(--piano-color-primary);
+  background:linear-gradient(45deg,var(--piano-color-secondary) 50%,#000 100%)
 }
 
 .piano .key[active=true] {
-  background: salmon;
+  background: var(--piano-color-active);
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  color: var(--piano-color-secondary);
+}
+.piano .key[isKey="true"] {
+  background: var(--piano-color-isKey);
+  text-decoration: underline;
 }
 
 /* GUITAR */
