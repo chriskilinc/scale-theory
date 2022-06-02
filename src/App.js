@@ -22,7 +22,7 @@ function App() {
   const [pianoVisible, setPianoVisible] = useState(true);
   const [guitarVisible, setGuitarVisible] = useState(false);
   const [scalesVisible, setScalesVisible] = useState(true);
-  const [instrumentsVisible, setInstrumentsVisible] = useState(false);
+  const [instrumentsVisible, setInstrumentsVisible] = useState(true);
 
   const getArrangedChromaticScaleByKey = (key) => {
     const noteIndex = chromaticScaleExtended.findIndex((note) => note == key);
@@ -74,13 +74,14 @@ function App() {
     <div className="App">
       <header className="container">
         <nav className="navigation">
-          <div className="navigation-container">
+          {/* TODO: UI/UX */}
+          {/* <div className="navigation-container">
             <div><h1>Scale Theory</h1></div>
             <div>
               <a href="#" onClick={() => onScalesClick()}>Scales</a>
               <input className="search" placeholder="search scales" />
             </div>
-          </div>
+          </div> */}
         </nav>
 
         <section className="header-content">
@@ -89,9 +90,9 @@ function App() {
           <h2>{scale.notes.join(" - ")}</h2>
         </section>
 
-        <div className="instruments-options">
+        {/* TODO: UI/UX */}
+        {/* <div className="instruments-options">
           <a className="icon" href="#" onClick={() => setGuitarVisible(!guitarVisible)}>
-            {/* <img src={svgGuitar} /> */}
             <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
               <title>GUITAR</title>
               <g>
@@ -102,16 +103,15 @@ function App() {
             </svg>
           </a>
           <a className="icon" href="#" onClick={() => setPianoVisible(!pianoVisible)}>
-            {/* <img src={svgGuitar} /> */}
             <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128"><g strokeMiterlimit="10"><path d="M116.687 53.582H86.31a40.887 40.887 0 0 0-81.748 1.453V112.1a1.751 1.751 0 0 0 1.75 1.75h115.375a1.75 1.75 0 0 0 1.75-1.75V60.332a6.757 6.757 0 0 0-6.75-6.75zm-5.832 56.769h-93.7V85.466h7.226v12.443a1.75 1.75 0 0 0 1.75 1.75H32.7a1.75 1.75 0 0 0 1.75-1.75V85.466h7.226v12.443a1.75 1.75 0 0 0 1.75 1.75H50a1.75 1.75 0 0 0 1.75-1.75V85.466h7.226v12.443a1.75 1.75 0 0 0 1.75 1.75h6.564a1.75 1.75 0 0 0 1.75-1.75V85.466h7.226v12.443a1.75 1.75 0 0 0 1.75 1.75h6.569a1.75 1.75 0 0 0 1.75-1.75V85.466h7.226v12.443a1.75 1.75 0 0 0 1.75 1.75h6.568a1.75 1.75 0 0 0 1.75-1.75V85.466h7.226zM27.883 96.159V85.466h3.068v10.693zm17.294 0V85.466h3.069v10.693zm17.3 0V85.466h3.063v10.693zm17.294 0V85.466h3.069v10.693zm17.3 0V85.466h3.068v10.693zm22.876 14.192h-5.582V83.716a1.75 1.75 0 0 0-1.75-1.75h-97.2a1.75 1.75 0 0 0-1.75 1.75v26.635h-5.6V55.035a37.387 37.387 0 0 1 74.773 0v.3a1.75 1.75 0 0 0 1.75 1.75h32.1a3.254 3.254 0 0 1 3.25 3.25z" /><path d="M41.538 25.451A29.734 29.734 0 0 0 15.8 51.7a1.749 1.749 0 0 0 1.546 1.933 1.835 1.835 0 0 0 .2.011 1.75 1.75 0 0 0 1.737-1.557 26.244 26.244 0 0 1 22.72-23.164 1.75 1.75 0 1 0-.455-3.47z" /></g></svg>
           </a>
-        </div>
+        </div> */}
       </header>
 
       <main className="main container">
 
         <section className={`scale-view ${scalesVisible ? 'visible' : 'hidden'}`}>
-          <h3>Find Scale</h3>
+          {/* <h3>Find Scale</h3> */}
           <div className="keys">
             {chromaticScaleExtended.map(key => <a href="#" className={`key ${key == selectedKey ? 'current' : ''}`} onClick={() => setSelectedKey(key)} key={key}>{key}</a>)}
           </div>
