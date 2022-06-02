@@ -3,6 +3,7 @@
   --piano-color-secondary: #373737;
   --piano-color-active: #f7cec7;
   --piano-color-isKey: #e79797;
+  --ui-border-radius: 50px;
   --piano-key-white-height: 24em;
   --piano-key-margin: -1.3333em; /* TODO: --piano-key-white-height / 18 and negated */
   --piano-key-white-width: calc(var(--piano-key-white-height) / 4);
@@ -27,16 +28,31 @@
   display: flex;
   width: 100%;
 }
-
 .navigation-container {
   display: flex;
   width: 100%;
   justify-content: space-between;
   align-items: center;
 }
+.search {
+  padding: 0.75em 1.5em;
+  background: transparent;
+  border: 2px solid #fff;
+  border-radius: var(--ui-border-radius);
+  color: #fff;
+  margin-left: 1em;
+  outline: none;
+}
+.search:focus {
+  border-color: #fff;
+}
 
 .header-content {
   margin-bottom: 1em;
+}
+
+header h2 {
+  font-size: 2.5em;
 }
 
 .instruments-options .icon {
@@ -59,10 +75,6 @@ footer {
   right: 0;
 }
 
-header h2 {
-  font-size: 2.5em;
-}
-
 .header-content {
   display: flex;
   flex-direction: column;
@@ -78,6 +90,43 @@ a.icon svg {
   height: 3.5em;
   width: 3.5em;
   fill: #fff;
+}
+
+/* Scales */
+.scales-view {
+  display: flex;
+  flex-direction: column;
+}
+.scale-view .keys {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 1em;
+}
+.scale-view .keys .key {
+  padding: 5px 10px;
+  margin: 5px;
+  border: 2px solid var(--piano-color-secondary);
+  border-radius: var(--ui-border-radius);
+}
+.scale-view .keys .key.current {
+  border-color: var(--piano-color-isKey);
+}
+
+.scale-view .modes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 1em;
+}
+.scale-view .modes .mode {
+  padding: 5px 10px;
+  margin: 5px;
+  border: 2px solid var(--piano-color-secondary);
+  border-radius: var(--ui-border-radius);
+}
+.scale-view .modes .mode.current {
+  border-color: var(--piano-color-isKey);
 }
 
 /* PIANO */
@@ -134,7 +183,7 @@ a.icon svg {
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   color: var(--piano-color-secondary);
 }
-.piano .key[isKey="true"] {
+.piano .key[iskey="true"] {
   background: var(--piano-color-isKey);
   text-decoration: underline;
 }
@@ -330,15 +379,3 @@ a.icon svg {
 
 /* TODO: remake the guitar in flex */
 
-.search {
-  padding: 0.75em 1.5em;
-  background: transparent;
-  border: 2px solid #fff;
-  border-radius: 47px;
-  color: #fff;
-  margin-left: 1em;
-  outline: none;
-}
-.search:focus {
-  border-color: #fff;
-}
