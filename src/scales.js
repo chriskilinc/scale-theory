@@ -10,7 +10,7 @@ export const modes = [
     {
         name: "Phrygian",
         intervals: ["1", "2", "2", "2", "1", "2", "2"],
-        altName: "Modern Phrygian",
+        altNames: "Modern Phrygian",
     },
     {
         name: "Lydian",
@@ -27,6 +27,11 @@ export const modes = [
     {
         name: "Locrian",
         intervals: ["1", "2", "2", "1", "2", "2", "2"],
+    },
+    {
+        name: "Double harmonic major",
+        intervals: ["1", "3", "1", "2", "1", "3", "1"],
+        altNames: "Byzantine",
     },
 ]
 

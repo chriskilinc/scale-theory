@@ -58,7 +58,7 @@ function App() {
 
     return {
       name: `${key} ${mode}`,
-      altName: modeInfo.altName || "unknown",
+      altNames: modeInfo.altNames || "unknown",
       notes,
       intervals: modeInfo.intervals,
       mode,
@@ -85,7 +85,7 @@ function App() {
         </nav>
 
         <section className="header-content">
-          <p>{scale.name} ({scale.altName})</p>
+          <p>{scale.name} ({scale.altNames})</p>
           <p>Intervals: {scale.intervals.join(" - ")}</p>
           <h2>{scale.notes.join(" - ")}</h2>
         </section>
