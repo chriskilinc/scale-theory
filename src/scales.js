@@ -33,6 +33,11 @@ export const modes = [
         intervals: ["1", "3", "1", "2", "1", "3", "1"],
         altNames: "Byzantine",
     },
+    {
+        name: "Double harmonic minor",
+        intervals: ["2", "1", "3", "1", "1", "3", "1"],
+        altNames: "Hungarian minor, Gypsy minor",
+    },
 ]
 
 export const scales = [
