@@ -58,7 +58,7 @@ function App() {
 
     return {
       name: `${key} ${mode}`,
-      altNames: modeInfo.altNames || "unknown",
+      altNames: modeInfo.altNames || "todo",
       notes,
       intervals: modeInfo.intervals,
       mode,

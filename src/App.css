@@ -10,6 +10,42 @@
   --piano-key-black-height: calc(var(--piano-key-white-height) / 1.5);
   --piano-key-black-width: calc(var(--piano-key-black-height) / 6);
 }
+@media only screen and (max-width: 790px) {
+  * {
+    --piano-key-white-height: 20em;
+    --piano-key-margin: -1.1111em; /* TODO: --piano-key-white-height / 18 and negated */
+  }
+}
+@media only screen and (max-width: 667px) {
+  * {
+    --piano-key-white-height: 16em;
+    --piano-key-margin: -1.1111em; /* TODO */
+  }
+}
+@media only screen and (max-width: 500px) {
+  * {
+    --piano-key-white-height: 14em;
+    --piano-key-margin: -1.1111em; /* TODO */
+  }
+}
+@media only screen and (max-width: 420px) {
+  * {
+    --piano-key-white-height: 12em;
+    --piano-key-margin: -1.1111em; /* TODO */
+  }
+}
+@media only screen and (max-width: 333px) {
+  * {
+    --piano-key-white-height: 10em;
+    --piano-key-margin: -1.1111em; /* TODO */
+  }
+}
+@media only screen and (max-width: 240px) {
+  * {
+    --piano-key-white-height: 8em;
+    --piano-key-margin: -1.1111em; /* TODO */
+  }
+}
 
 .App {
   display: flex;
