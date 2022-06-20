@@ -34,9 +34,19 @@ code {
 a {
   text-decoration: none;
   color: #f5f5f5;
+  font-size: var(--text-size-default);
 }
 
+p {
+  font-size: var(--text-size-default);
+}
 
+h2 {
+  font-size: var(--text-size-h2);
+}
+h3 {
+  font-size: var(--text-size-h3);
+}
 .padding-around-s {
   padding: 0 6px;
 }

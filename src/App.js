@@ -86,8 +86,8 @@ function App() {
 
         <section className="header-content">
           <p>{scale.name} ({scale.altNames})</p>
-          <p>Intervals: {scale.intervals.join(" - ")}</p>
-          <h2>{scale.notes.join(" - ")}</h2>
+          <p>({scale.intervals.join(" - ")})</p>
+          <h2>{scale.notes.join(" ")}</h2>
         </section>
 
         {/* TODO: UI/UX */}
@@ -111,10 +111,11 @@ function App() {
       <main className="main container">
 
         <section className={`scale-view ${scalesVisible ? 'visible' : 'hidden'}`}>
-          {/* <h3>Find Scale</h3> */}
+          <h3>Select key</h3>
           <div className="keys">
             {chromaticScaleExtended.map(key => <a href="#" className={`key ${key == selectedKey ? 'current' : ''}`} onClick={() => setSelectedKey(key)} key={key}>{key}</a>)}
           </div>
+          <h3>Select mode</h3>
           <div className="modes">
             {modes.map(mode => <a href="#" className={`mode ${mode.name == selectedMode ? 'current' : ''}`} onClick={() => setSelectedMode(mode.name)} key={mode.name}>{mode.name}</a>)}
           </div>

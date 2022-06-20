@@ -9,43 +9,32 @@
   --piano-key-white-width: calc(var(--piano-key-white-height) / 4);
   --piano-key-black-height: calc(var(--piano-key-white-height) / 1.5);
   --piano-key-black-width: calc(var(--piano-key-black-height) / 6);
+  --piano-key-font-size: 1.25em;
+  --text-size-default: 1em;
+  --text-size-h2: 2.5em;
+  --container-padding: 1em 1em 0 1em;
+  --scale-view-item-margin: 5px;
 }
-@media only screen and (max-width: 790px) {
-  * {
-    --piano-key-white-height: 20em;
-    --piano-key-margin: -1.1111em; /* TODO: --piano-key-white-height / 18 and negated */
-  }
-}
-@media only screen and (max-width: 667px) {
-  * {
-    --piano-key-white-height: 16em;
-    --piano-key-margin: -1.1111em; /* TODO */
-  }
-}
-@media only screen and (max-width: 500px) {
-  * {
-    --piano-key-white-height: 14em;
-    --piano-key-margin: -1.1111em; /* TODO */
-  }
-}
-@media only screen and (max-width: 420px) {
+
+
+/* @media only screen and (max-width: 420px) {
   * {
     --piano-key-white-height: 12em;
-    --piano-key-margin: -1.1111em; /* TODO */
+    --piano-key-margin: -1.1111em; 
   }
 }
 @media only screen and (max-width: 333px) {
   * {
     --piano-key-white-height: 10em;
-    --piano-key-margin: -1.1111em; /* TODO */
+    --piano-key-margin: -1.1111em; 
   }
 }
 @media only screen and (max-width: 240px) {
   * {
     --piano-key-white-height: 8em;
-    --piano-key-margin: -1.1111em; /* TODO */
+    --piano-key-margin: -1.1111em;
   }
-}
+} */
 
 .App {
   display: flex;
@@ -83,12 +72,13 @@
   border-color: #fff;
 }
 
-/* .header-content {
-  margin-bottom: 1em;
-} */
+.header-content {
+  text-align: center;
+}
 
 header h2 {
-  font-size: 2.5em;
+  font-size: var(--text-size-h2);
+  margin-top: 0.25em;
 }
 
 .instruments {
@@ -103,7 +93,7 @@ header h2 {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 2em 2em 0 2em;
+  padding: var(--container-padding);
 }
 
 footer {
@@ -140,11 +130,11 @@ a.icon svg {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  /* padding: 1em; */
+  padding: 0.5em 0;
 }
 .scale-view .keys .key {
   padding: 5px 10px;
-  margin: 5px;
+  margin: var(--scale-view-item-margin);
   border: 2px solid var(--piano-color-secondary);
   border-radius: var(--ui-border-radius);
 }
@@ -156,11 +146,11 @@ a.icon svg {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 1em;
+  padding: 0.5em 0;
 }
 .scale-view .modes .mode {
   padding: 5px 10px;
-  margin: 5px;
+  margin: var(--scale-view-item-margin);
   border: 2px solid var(--piano-color-secondary);
   border-radius: var(--ui-border-radius);
 }
@@ -196,7 +186,7 @@ a.icon svg {
 .piano .key p {
   padding: 1em 0;
   /* TODO: Find a nice font */
-  font-size: 1.25em;
+  font-size: var(--piano-key-font-size);
   font-weight: 700;
 }
 
@@ -424,3 +414,27 @@ a.icon svg {
 
 /* TODO: remake the guitar in flex */
 
+
+
+@media only screen and (max-width: 380px) {
+  * {
+    --piano-key-white-height: 10em;
+    --piano-key-margin: -0.5555em; /* TODO */
+    --piano-key-font-size: 0.8em;
+  }
+
+  .instruments {
+    padding: 0;
+  }
+}
+@media only screen and (max-width: 280px) {
+  * {
+    --piano-key-white-height: 8em;
+    --piano-key-margin: -0.4444em; /* TODO */
+    --piano-key-font-size: 0.8em;
+    --text-size-default: 0.8em;
+    --text-size-h2: 1em;
+    --container-padding: 0.75em 0.75em 0 0.75em;
+    --scale-view-item-margin: 2.5px;
+  }
+}
