@@ -1,13 +1,13 @@
 import { useEffect, useState, useRef } from 'react';
 import './App.css';
-import { scaleExamples, chromaticScale, chromaticScaleExtended, scales, modes } from './scales';
+import { chromaticScale, chromaticScaleExtended, modes } from './scales';
 import { Footer } from './Footer';
 
 
 function App() {
   const [selectedKey, setSelectedKey] = useState("E");
   const [selectedMode, setSelectedMode] = useState("Phrygian");
-  const [scale, setScale] = useState(scaleExamples[0]);
+  const [scale, setScale] = useState();
   const [piano, setPiano] = useState([]);
 
   // TODO: remake along with guitar
@@ -71,27 +71,28 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <header className="container">
-        <nav className="navigation">
-          {/* TODO: UI/UX */}
-          {/* <div className="navigation-container">
+    scale ?
+      <div className="App">
+        <header className="container">
+          <nav className="navigation">
+            {/* TODO: UI/UX */}
+            {/* <div className="navigation-container">
             <div><h1>Scale Theory</h1></div>
             <div>
               <a href="#" onClick={() => onScalesClick()}>Scales</a>
               <input className="search" placeholder="search scales" />
             </div>
           </div> */}
-        </nav>
+          </nav>
 
-        <section className="header-content">
-          <p>{scale.name} ({scale.altNames})</p>
-          <p>({scale.intervals.join(" - ")})</p>
-          <h2>{scale.notes.join(" ")}</h2>
-        </section>
+          <section className="header-content">
+            <p>{scale.name} ({scale.altNames})</p>
+            <p>({scale.intervals.join(" - ")})</p>
+            <h2>{scale.notes.join(" ")}</h2>
+          </section>
 
-        {/* TODO: UI/UX */}
-        {/* <div className="instruments-options">
+          {/* TODO: UI/UX */}
+          {/* <div className="instruments-options">
           <a className="icon" href="#" onClick={() => setGuitarVisible(!guitarVisible)}>
             <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
               <title>GUITAR</title>
@@ -106,106 +107,106 @@ function App() {
             <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128"><g strokeMiterlimit="10"><path d="M116.687 53.582H86.31a40.887 40.887 0 0 0-81.748 1.453V112.1a1.751 1.751 0 0 0 1.75 1.75h115.375a1.75 1.75 0 0 0 1.75-1.75V60.332a6.757 6.757 0 0 0-6.75-6.75zm-5.832 56.769h-93.7V85.466h7.226v12.443a1.75 1.75 0 0 0 1.75 1.75H32.7a1.75 1.75 0 0 0 1.75-1.75V85.466h7.226v12.443a1.75 1.75 0 0 0 1.75 1.75H50a1.75 1.75 0 0 0 1.75-1.75V85.466h7.226v12.443a1.75 1.75 0 0 0 1.75 1.75h6.564a1.75 1.75 0 0 0 1.75-1.75V85.466h7.226v12.443a1.75 1.75 0 0 0 1.75 1.75h6.569a1.75 1.75 0 0 0 1.75-1.75V85.466h7.226v12.443a1.75 1.75 0 0 0 1.75 1.75h6.568a1.75 1.75 0 0 0 1.75-1.75V85.466h7.226zM27.883 96.159V85.466h3.068v10.693zm17.294 0V85.466h3.069v10.693zm17.3 0V85.466h3.063v10.693zm17.294 0V85.466h3.069v10.693zm17.3 0V85.466h3.068v10.693zm22.876 14.192h-5.582V83.716a1.75 1.75 0 0 0-1.75-1.75h-97.2a1.75 1.75 0 0 0-1.75 1.75v26.635h-5.6V55.035a37.387 37.387 0 0 1 74.773 0v.3a1.75 1.75 0 0 0 1.75 1.75h32.1a3.254 3.254 0 0 1 3.25 3.25z" /><path d="M41.538 25.451A29.734 29.734 0 0 0 15.8 51.7a1.749 1.749 0 0 0 1.546 1.933 1.835 1.835 0 0 0 .2.011 1.75 1.75 0 0 0 1.737-1.557 26.244 26.244 0 0 1 22.72-23.164 1.75 1.75 0 1 0-.455-3.47z" /></g></svg>
           </a>
         </div> */}
-      </header>
+        </header>
 
-      <main className="main container">
+        <main className="main container">
 
-        <section className={`scale-view ${scalesVisible ? 'visible' : 'hidden'}`}>
-          <h3>Select key</h3>
-          <div className="keys">
-            {chromaticScaleExtended.map(key => <a href="#" className={`key ${key == selectedKey ? 'current' : ''}`} onClick={() => setSelectedKey(key)} key={key}>{key}</a>)}
-          </div>
-          <h3>Select mode</h3>
-          <div className="modes">
-            {modes.map(mode => <a href="#" className={`mode ${mode.name == selectedMode ? 'current' : ''}`} onClick={() => setSelectedMode(mode.name)} key={mode.name}>{mode.name}</a>)}
-          </div>
-        </section>
-
-        <div className={`instruments ${instrumentsVisible ? 'visible' : 'hidden'}`}>
-          <section className={`piano ${pianoVisible ? 'visible' : 'hidden'}`}>
-            <div className="piano-container">
-              {piano.map((note, i, arr) => {
-                const reactKey = `${note}-${i}`;
-                const active = scale.notes.includes(note).toString();
-                const isBlack = note.includes("#");
-                const pianoKey = isBlack ? "black" : "white";
-                const isKey = (note == scale.notes[0]).toString();
-                const classes = `key ${pianoKey} ${note}`;
-                const notes = note.split("/");  // Only aplicable for black notes, ex: C#/Db
-                const innerKey = isBlack ? <span><p>{notes[0]}</p><p></p><p>{notes[1]}</p></span> : <p>{note}</p>;
-                return <div key={reactKey} note={note} active={active} iskey={isKey} className={classes}>{innerKey}</div>
-              })}
+          <section className={`scale-view ${scalesVisible ? 'visible' : 'hidden'}`}>
+            <h3>Select key</h3>
+            <div className="keys">
+              {chromaticScaleExtended.map(key => <a href="#" className={`key ${key == selectedKey ? 'current' : ''}`} onClick={() => setSelectedKey(key)} key={key}>{key}</a>)}
+            </div>
+            <h3>Select mode</h3>
+            <div className="modes">
+              {modes.map(mode => <a href="#" className={`mode ${mode.name == selectedMode ? 'current' : ''}`} onClick={() => setSelectedMode(mode.name)} key={mode.name}>{mode.name}</a>)}
             </div>
           </section>
 
-          {/* TODO: Remake all this into flex */}
-          <div className={`guitar-neck ${guitarVisible ? 'visible' : 'hidden'}`}>
+          <div className={`instruments ${instrumentsVisible ? 'visible' : 'hidden'}`}>
+            <section className={`piano ${pianoVisible ? 'visible' : 'hidden'}`}>
+              <div className="piano-container">
+                {piano.map((note, i, arr) => {
+                  const reactKey = `${note}-${i}`;
+                  const active = scale.notes.includes(note).toString();
+                  const isBlack = note.includes("#");
+                  const pianoKey = isBlack ? "black" : "white";
+                  const isKey = (note == scale.notes[0]).toString();
+                  const classes = `key ${pianoKey} ${note}`;
+                  const notes = note.split("/");  // Only aplicable for black notes, ex: C#/Db
+                  const innerKey = isBlack ? <span><p>{notes[0]}</p><p></p><p>{notes[1]}</p></span> : <p>{note}</p>;
+                  return <div key={reactKey} note={note} active={active} iskey={isKey} className={classes}>{innerKey}</div>
+                })}
+              </div>
+            </section>
 
-            < div className="fret first"></div>
-            <div className="fret"></div>
-            <div className="fret"></div>
-            <div className="fret"></div>
-            <div className="fret"></div>
-            <div className="fret"></div>
-            <div className="fret"></div>
-            <div className="fret"></div>
-            <div className="fret"></div>
-            <div className="fret"></div>
-            <div className="fret"></div>
-            <div className="fret"></div>
-            <div className="fret"></div>
+            {/* TODO: Remake all this into flex */}
+            <div className={`guitar-neck ${guitarVisible ? 'visible' : 'hidden'}`}>
 
-            <ul className="dots">
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-            </ul>
-            <ul className="strings">
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-            </ul>
+              < div className="fret first"></div>
+              <div className="fret"></div>
+              <div className="fret"></div>
+              <div className="fret"></div>
+              <div className="fret"></div>
+              <div className="fret"></div>
+              <div className="fret"></div>
+              <div className="fret"></div>
+              <div className="fret"></div>
+              <div className="fret"></div>
+              <div className="fret"></div>
+              <div className="fret"></div>
+              <div className="fret"></div>
 
-            <ul className="open-notes">
-              <li className="low-e">E</li>
-              <li className="b">B</li>
-              <li className="g">G</li>
-              <li className="d">D</li>
-              <li className="a">A</li>
-              <li className="high-e">E</li>
-            </ul>
-            <div className="notes">
-              <div className="mask low-e">
-                <ul>{guitarNotes.e.map((note, i) => <li key={`E-${note}-${i}`} className={scale.notes.includes(note) ? "visible" : "hidden"}>{note}</li>)}</ul>
+              <ul className="dots">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+              </ul>
+              <ul className="strings">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+              </ul>
+
+              <ul className="open-notes">
+                <li className="low-e">E</li>
+                <li className="b">B</li>
+                <li className="g">G</li>
+                <li className="d">D</li>
+                <li className="a">A</li>
+                <li className="high-e">E</li>
+              </ul>
+              <div className="notes">
+                <div className="mask low-e">
+                  <ul>{guitarNotes.e.map((note, i) => <li key={`E-${note}-${i}`} className={scale.notes.includes(note) ? "visible" : "hidden"}>{note}</li>)}</ul>
+                </div>
+                <div className="mask a">
+                  <ul>{guitarNotes.a.map((note, i) => <li key={`A-${note}-${i}`} className={scale.notes.includes(note) ? "visible" : "hidden"}>{note}</li>)}</ul>
+                </div>
+                <div className="mask d">
+                  <ul>{guitarNotes.d.map((note, i) => <li key={`D-${note}-${i}`} className={scale.notes.includes(note) ? "visible" : "hidden"}>{note}</li>)}</ul>
+                </div>
+                <div className="mask g">
+                  <ul>{guitarNotes.g.map((note, i) => <li key={`G-${note}-${i}`} className={scale.notes.includes(note) ? "visible" : "hidden"}>{note}</li>)}</ul>
+                </div>
+                <div className="mask b">
+                  <ul>{guitarNotes.b.map((note, i) => <li key={`B-${note}-${i}`} className={scale.notes.includes(note) ? "visible" : "hidden"}>{note}</li>)}</ul>
+                </div>
+                <div className="mask high-e">
+                  <ul>{guitarNotes.e.map((note, i) => <li key={`e-${note}-${i}`} className={scale.notes.includes(note) ? "visible" : "hidden"}>{note}</li>)}</ul>
+                </div>
               </div>
-              <div className="mask a">
-                <ul>{guitarNotes.a.map((note, i) => <li key={`A-${note}-${i}`} className={scale.notes.includes(note) ? "visible" : "hidden"}>{note}</li>)}</ul>
+              <div className="numbers">
+                {Array.from({ length: 12 }, (v, i) => i + 1).map(num => <p>{num}</p>)}
               </div>
-              <div className="mask d">
-                <ul>{guitarNotes.d.map((note, i) => <li key={`D-${note}-${i}`} className={scale.notes.includes(note) ? "visible" : "hidden"}>{note}</li>)}</ul>
-              </div>
-              <div className="mask g">
-                <ul>{guitarNotes.g.map((note, i) => <li key={`G-${note}-${i}`} className={scale.notes.includes(note) ? "visible" : "hidden"}>{note}</li>)}</ul>
-              </div>
-              <div className="mask b">
-                <ul>{guitarNotes.b.map((note, i) => <li key={`B-${note}-${i}`} className={scale.notes.includes(note) ? "visible" : "hidden"}>{note}</li>)}</ul>
-              </div>
-              <div className="mask high-e">
-                <ul>{guitarNotes.e.map((note, i) => <li key={`e-${note}-${i}`} className={scale.notes.includes(note) ? "visible" : "hidden"}>{note}</li>)}</ul>
-              </div>
-            </div>
-            <div className="numbers">
-              {Array.from({ length: 12 }, (v, i) => i + 1).map(num => <p>{num}</p>)}
             </div>
           </div>
-        </div>
 
 
-        {/* <div className="controls">
+          {/* <div className="controls">
           <a className="up" href="#">Tune 1/2 Step Up</a>
           <a className="down" href="#">Tune 1/2 Step Down</a>
 
@@ -227,10 +228,11 @@ function App() {
           </ul>
         </div> */}
 
-        {/* <p>DEBUG:: CurrentKey: {selectedKey} // CurrentMode: {selectedMode}</p> */}
-        {Footer}
-      </main>
-    </div >
+          {Footer}
+        </main>
+      </div >
+      :
+      <p>loading</p>
   );
 }
 
