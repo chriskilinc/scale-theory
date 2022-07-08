@@ -86,7 +86,7 @@ function App() {
           </nav>
 
           <section className="header-content">
-            <p>{scale.name} ({scale.altNames})</p>
+            <p id="scale-name">{scale.name}  <span className="tooltip tooltip-bottom" data-tooltip={scale.altNames}>?</span></p>
             <p>({scale.intervals.join(" - ")})</p>
             <h2>{scale.notes.join(" ")}</h2>
           </section>

@@ -62,6 +62,11 @@ header h2 {
   margin-top: 0.25em;
 }
 
+#scale-name {
+  display: flex;
+  padding-bottom: 6px;
+}
+
 .instruments {
   padding: 1em;
 }
@@ -393,6 +398,35 @@ a.icon svg {
   justify-content: space-around;
 }
 
+
+
+.tooltip {
+  color: var(--color-white);
+  text-decoration: none;
+  font-size: 12px;
+  padding: 0px 4px;
+  margin-left: 8px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: bold;
+  border: 2px solid #f5f5f5;
+}
+.tooltip:hover {
+  position: relative;
+  cursor: pointer;
+}
+.tooltip-bottom:hover:after{
+  background: #282c34;
+  font-size: var(--text-size-default);
+  border: 2px solid var(--color-white);
+  content: attr(data-tooltip);
+  padding: 8px;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  white-space: nowrap;
+  color: var(--color-white);
+}
 
 /* Responsive code */
 
