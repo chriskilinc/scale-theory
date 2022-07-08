@@ -5,7 +5,7 @@
   --piano-color-isKey: #e79797;
   --ui-border-radius: 50px;
   --piano-key-white-height: 24em;
-  --piano-key-margin: -1.3333em; /* TODO: --piano-key-white-height / 18 and negated */
+  --piano-key-margin: -1.34em; /* TODO: --piano-key-white-height / 18 and negated round up*/
   --piano-key-white-width: calc(var(--piano-key-white-height) / 4);
   --piano-key-black-height: calc(var(--piano-key-white-height) / 1.5);
   --piano-key-black-width: calc(var(--piano-key-black-height) / 6);
@@ -420,7 +420,7 @@ a.icon svg {
   and (max-width: 440px) {
   * {
     --piano-key-white-height: 10em;
-    --piano-key-margin: -0.555em; 
+    --piano-key-margin: -0.56em; 
     --piano-key-font-size: 14px;
   }
 }
@@ -431,7 +431,9 @@ a.icon svg {
   {
   * {
     --piano-key-white-height: 12em;
-    --piano-key-margin: -0.6666em; 
+    --piano-key-margin: -0.67em; 
+    --piano-key-font-size: 16px;
+
   }
 }
 
@@ -441,7 +443,7 @@ a.icon svg {
   {
   * {
     --piano-key-white-height: 16em;
-    --piano-key-margin: -0.8888em; 
+    --piano-key-margin: -0.89em; 
   }
 }
 
@@ -451,6 +453,6 @@ a.icon svg {
   {
   * {
     --piano-key-white-height: 20em;
-    --piano-key-margin: -1.1111em; 
+    --piano-key-margin: -1.12em; 
   }
 }
