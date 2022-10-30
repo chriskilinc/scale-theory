@@ -1,12 +1,14 @@
 export const modes = [
     {
         name: "Ionian",
+        altNames: "Major scale",
         intervals: ["2", "2", "1", "2", "2", "2", "1"],
         tags: ["major"],
     },
     {
         name: "Dorian",
         intervals: ["2", "1", "2", "2", "2", "1", "2"],
+        altNames: "Minor scale",
         tags: ["minor"],
     },
     {
@@ -29,12 +31,13 @@ export const modes = [
     {
         name: "Aeolian",
         intervals: ["2", "1", "2", "2", "1", "2", "2"],
+        altNames: "Natural Minor scale",
         tags: [],
     },
     {
         name: "Locrian",
         intervals: ["1", "2", "2", "1", "2", "2", "2"],
-        tags: [],
+        tags: ["minor"],
     },
     {
         name: "Double harmonic major",

@@ -1,9 +1,12 @@
 * {
+  --color-white: #f3e3e3;
+  --color-brown: #443c3c;
+  --color-text: var(--color-brown);
   --piano-color-primary: #f5f5f5;
   --piano-color-secondary: #373737;
-  --piano-color-active: #f7cec7;
-  --piano-color-isKey: #e79797;
-  --ui-border-radius: 50px;
+  --piano-color-active: #e7c8c8;
+  --piano-color-isKey: #c47575;
+  --ui-border-radius: 8px;
   --piano-key-white-height: 24em;
   --piano-key-margin: -1.34em; /* TODO: --piano-key-white-height / 18 and negated round up*/
   --piano-key-white-width: calc(var(--piano-key-white-height) / 4);
@@ -22,9 +25,19 @@
   width: 100vw;
   min-height: 100vh;
   flex-direction: column;
-  background: #282c34;
-  color: #f5f5f5;
+  justify-content: center;
+  align-items: center;
+  background: #443c3c;
+  color: var(--color-text);
   font-family: 'Roboto Mono', monospace;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.wrapper {
+  background: #f3e3e3;
+  border-radius: 20px;
+  max-width: 1100px;
+  padding: 26px;
 }
 
 .main {
@@ -43,14 +56,14 @@
 .search {
   padding: 0.75em 1.5em;
   background: transparent;
-  border: 2px solid #fff;
+  border: 2px solid var(--color-white);
   border-radius: var(--ui-border-radius);
-  color: #fff;
+  color: var(--color-white);
   margin-left: 1em;
   outline: none;
 }
 .search:focus {
-  border-color: #fff;
+  border-color: var(--color-white);
 }
 
 .header-content {
@@ -104,13 +117,16 @@ a.icon {
 a.icon svg {
   height: 3.5em;
   width: 3.5em;
-  fill: #fff;
+  fill: var(--color-white);
 }
 
 /* Scales */
 .scales-view {
   display: flex;
   flex-direction: column;
+}
+.scale-view h3 {
+  text-decoration: underline;
 }
 .scale-view .keys {
   display: flex;
@@ -119,10 +135,11 @@ a.icon svg {
   padding: 0.5em 0;
 }
 .scale-view .keys .key {
-  padding: 5px 10px;
+  padding: 6px 13px;
   margin: var(--scale-view-item-margin);
   border: 2px solid var(--piano-color-secondary);
   border-radius: var(--ui-border-radius);
+  color: var(--color-text);
 }
 .scale-view .keys .key.current {
   border-color: var(--piano-color-isKey);
@@ -135,10 +152,11 @@ a.icon svg {
   padding: 0.5em 0;
 }
 .scale-view .modes .mode {
-  padding: 5px 10px;
+  padding: 5px 13px;
   margin: var(--scale-view-item-margin);
   border: 2px solid var(--piano-color-secondary);
   border-radius: var(--ui-border-radius);
+  color: var(--color-text);
 }
 .scale-view .modes .mode.current {
   border-color: var(--piano-color-isKey);
@@ -160,10 +178,10 @@ a.icon svg {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
 }
 .piano .key:last-child {
-  border-radius: 0 25px 25px 0;
+  border-radius: 0 var(--ui-border-radius) var(--ui-border-radius) 0;
 }
 .piano .key:first-child {
-  border-radius: 25px 0 0 25px;
+  border-radius: var(--ui-border-radius) 0 0 var(--ui-border-radius);
 }
 .piano .key.E,.D,.G,.A,.B {
   margin:0 0 0 var(--piano-key-margin)
@@ -171,9 +189,7 @@ a.icon svg {
 
 .piano .key p {
   padding: 1em 0;
-  /* TODO: Find a nice font */
   font-size: var(--piano-key-font-size);
-  font-weight: 700;
 }
 
 .piano .key.white {
@@ -181,7 +197,7 @@ a.icon svg {
   width: var(--piano-key-white-width);
   z-index:1;
   color: var(--piano-color-secondary);
-  background:linear-gradient(to bottom,#fff 0%, var(--piano-color-primary) 100%);
+  background:linear-gradient(to bottom,var(--color-white) 0%, var(--piano-color-primary) 100%);
 }
 
 .piano .key.black{
@@ -238,7 +254,7 @@ a.icon svg {
 .guitar-neck .open-notes li {
   margin-bottom: 20px;
   font-size: 18px;
-  color: #fff;
+  color: var(--color-white);
 }
 .guitar-neck .open-notes li.active {
   color: #fa990f;
@@ -330,7 +346,7 @@ a.icon svg {
   height: 30px;
   margin-right: 50px;
   background: #fa990f;
-  color: #fff;
+  color: var(--color-white);
   border-radius: 50%;
   text-align: center;
   line-height: 30px;
@@ -367,7 +383,7 @@ a.icon svg {
 .controls a {
   text-decoration: none;
   background: #333;
-  color: #fff;
+  color: var(--color-white);
   padding: 5px 10px;
   margin-right: 40px;
 }
@@ -383,7 +399,7 @@ a.icon svg {
   width: 40px;
   height: 20px;
   background: #333;
-  color: #fff;
+  color: var(--color-white);
   margin-right: 20px;
   cursor: pointer;
 }
@@ -401,36 +417,36 @@ a.icon svg {
 
 
 .tooltip {
-  color: var(--color-white);
+  color: var(--color-text);
   text-decoration: none;
   font-size: 12px;
-  padding: 0px 4px;
+  padding: 0px 6px;
   margin-left: 8px;
-  border-radius: 50px;
+  border-radius: 6px;
   cursor: pointer;
   font-weight: bold;
-  border: 2px solid #f5f5f5;
+  border: 2px solid  var(--color-text);
 }
 .tooltip:hover {
   position: relative;
   cursor: pointer;
 }
 .tooltip-bottom:hover:after{
-  background: #282c34;
+  background: var(--color-brown);
   font-size: var(--text-size-default);
-  border: 2px solid var(--color-white);
   content: attr(data-tooltip);
-  padding: 8px;
+  padding: 6px 12px;
   position: absolute;
   left: 0;
   top: 100%;
   white-space: nowrap;
   color: var(--color-white);
+  border-radius: 4px;
 }
 
 /* Responsive code */
 
-@media only screen  
+@media only screen
   and (min-width: 320px)
   and (max-width: 360px) {
   * {
@@ -449,44 +465,62 @@ a.icon svg {
   }
 }
 
-@media only screen  
+@media only screen
   and (min-width: 360px)
   and (max-width: 440px) {
   * {
     --piano-key-white-height: 10em;
-    --piano-key-margin: -0.56em; 
+    --piano-key-margin: -0.56em;
     --piano-key-font-size: 14px;
   }
 }
 
-@media only screen  
+@media only screen
   and (min-width: 440px)
-  and (max-width: 666px) 
+  and (max-width: 666px)
   {
   * {
     --piano-key-white-height: 12em;
-    --piano-key-margin: -0.67em; 
+    --piano-key-margin: -0.67em;
     --piano-key-font-size: 16px;
 
   }
 }
 
-@media only screen  
+@media only screen
   and (min-width: 666px)
-  and (max-width: 820px) 
+  and (max-width: 820px)
   {
   * {
     --piano-key-white-height: 16em;
-    --piano-key-margin: -0.89em; 
+    --piano-key-margin: -0.89em;
   }
 }
 
-@media only screen  
+@media only screen
   and (min-width: 820px)
-  and (max-width: 1000px) 
+  and (max-width: 1000px)
   {
   * {
     --piano-key-white-height: 20em;
-    --piano-key-margin: -1.12em; 
+    --piano-key-margin: -1.12em;
   }
+}
+
+
+@media only screen
+  and (max-width: 1200px)
+  {
+    .App {
+      background-color: #f3e3e3;
+    }
+
+    /* fix: mobile smal screens */
+    body {
+      background-color: #f3e3e3;
+    }
+
+    footer a {
+      color: var(--color-text);
+    }
 }
