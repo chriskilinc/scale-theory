@@ -51,6 +51,12 @@ export const modes = [
         altNames: "Hungarian minor, Gypsy minor",
         tags: [],
     },
+    {
+        name: "Phrygian dominant",
+        intervals: ["1", "3", "1", "2", "1", "2", "2"],
+        altNames: "Persian scale, Altered Phrygian scale",
+        tags: ["minor"],
+    },
 ]
 
 export const chromaticScale = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#'];    // TODO:    Remove?
