@@ -22,7 +22,7 @@
 
 .App {
   display: flex;
-  width: 100vw;
+  /* width: 100vw; */
   min-height: 100vh;
   flex-direction: column;
   justify-content: center;
@@ -38,6 +38,7 @@
   border-radius: 20px;
   max-width: 1100px;
   padding: 26px;
+  margin: 1rem;
 }
 
 .main {
@@ -82,6 +83,13 @@ header h2 {
 
 .instruments {
   padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.instruments-options {
+  display: flex;
+  gap: 0.5rem;
 }
 .instruments-options .icon {
   padding: 0 0.5em;
@@ -95,12 +103,11 @@ header h2 {
   padding: var(--container-padding);
 }
 
-footer {
-  position: fixed;
+.contact {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
-  padding: 1em;
-  bottom: 0;
-  right: 0;
+}
+.contact a {
+  color: var(--color-text);
 }
 
 .header-content {
@@ -113,11 +120,16 @@ footer {
 a.icon {
   display: inline-flex;
   flex-direction: column;
+  border: 2px solid var(--color-white);
+  border-radius: var(--ui-border-radius);
+}
+a.icon.visible {
+  border-color: var(--color-brown);
 }
 a.icon svg {
   height: 3.5em;
   width: 3.5em;
-  fill: var(--color-white);
+  fill: var(--color-brown);
 }
 
 /* Scales */
@@ -165,6 +177,8 @@ a.icon svg {
 /* PIANO */
 .piano.hidden{
   display: none;
+}
+.piano {
 }
 .piano-container {
   display: flex;
@@ -226,195 +240,89 @@ a.icon svg {
 }
 
 /* GUITAR */
+.guitar {
+}
 
-/* @font-face {
-  font-family: 'Source Sans Pro';
-  font-style: normal;
-  font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/sourcesanspro/v19/6xK3dSBYKcSV-LCoeQqfX1RYOo3qOK7g.ttf) format('truetype');
-} */
-.guitar-neck.hidden{
-  display: none;
+.guitar .guitar-container {
+  display: flex;
+  flex-direction: column;
+  border-top: 2px solid var(--color-text);
+  border-bottom: 2px solid var(--color-text);
 }
-.guitar-neck {
+
+.guitar .guitar-container .string {
+  display: flex;
+  flex-direction: row;
+}
+.guitar .guitar-container .string .note {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* flex-direction: row; */
+  border-right: 2px solid var(--color-brown);
+  width: 4rem;
+  height: 2rem;
+}
+.guitar .guitar-container .string .note[fret="0"] {
+  border-left: 2px solid var(--color-brown);
+}
+.guitar .guitar-container .string .note p {
+  text-align: center;
+  flex: 1;
+}
+.guitar .guitar-container .string .note p {
   position: relative;
-  margin-top: 40px;
-  left: 35%;
-  margin-left: -450px;
-  width: 960px;
-  height: 250px;
-  background: #755628;
-  box-shadow: inset -1px 0px 11px 0px rgba(0, 0, 0, 0.75);
+  z-index: 1;
 }
-.guitar-neck .open-notes {
+.guitar .guitar-container .string .note p:before {
+  border-top: 2px solid var(--color-brown);
+  content: "";
+  margin: 0 auto;
   position: absolute;
-  top: 3px;
-  left: -35px;
-}
-.guitar-neck .open-notes li {
-  margin-bottom: 20px;
-  font-size: 18px;
-  color: var(--color-white);
-}
-.guitar-neck .open-notes li.active {
-  color: #fa990f;
-}
-.guitar-neck .fret {
-  float: left;
-  width: 3px;
-  height: 250px;
-  background: #d7d6d6;
-  margin-left: 75px;
-  border-right: 2px solid #686868;
-}
-.guitar-neck .fret.first {
-  position: absolute;
-  width: 50px;
-  left: -52px;
-  top: 0;
-  margin-left: 0;
-  background: #211f1d;
-}
-.guitar-neck .dots {
-  position: absolute;
-  width: 642px;
-  height: 20px;
-  top: 44%;
-  left: 19.5%;
-}
-.guitar-neck .dots li {
-  float: left;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: #383530;
-  margin-right: 140px;
-}
-.guitar-neck .strings {
-  position: absolute;
+  top: 50%;
   left: 0;
-  top: 10px;
-  width: 960px;
-  height: 250px;
-}
-.guitar-neck .strings li {
-  height: 1px;
-  display: inline-block;
-  width: 100%;
-  background: #c8bb93;
-  margin-bottom: 38px;
-  border-bottom: 2px solid #958963;
-  box-sizing: border-box;
-}
-.guitar-neck .strings li:nth-child(2) {
-  height: 2px;
-}
-.guitar-neck .strings li:nth-child(3) {
-  height: 3px;
-}
-.guitar-neck .strings li:nth-child(4) {
-  height: 4px;
-}
-.guitar-neck .strings li:nth-child(5) {
-  height: 5px;
-}
-.guitar-neck .strings li:nth-child(6) {
-  height: 6px;
-}
-.guitar-neck .notes {
-  position: absolute;
-  left: 17px;
-  top: -7px;
-  width: 960px;
-  height: 258px;
-  overflow-x: hidden;
-}
-.guitar-neck .notes .mask {
-  position: absolute;
-  right: -189px;
+  right: 0;
   bottom: 0;
-  width: 1184px;
-  height: 30px;
-}
-.guitar-neck .notes .mask ul {
-  position: relative;
-  float: left;
-}
-.guitar-neck .notes .mask ul li {
-  float: left;
-  width: 30px;
-  height: 30px;
-  margin-right: 50px;
-  background: #fa990f;
-  color: var(--color-white);
-  border-radius: 50%;
-  text-align: center;
-  line-height: 30px;
-  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.75);
-}
-.guitar-neck .notes .hidden {
- opacity: 0;
-}
-.guitar-neck .notes .mask.a {
-  bottom: 47px;
-}
-.guitar-neck .notes .mask.d {
-  bottom: 93px;
-}
-.guitar-neck .notes .mask.g {
-  bottom: 137px;
-}
-.guitar-neck .notes .mask.b {
-  bottom: 181px;
-}
-.guitar-neck .notes .mask.high-e {
-  bottom: 224px;
-}
-.controls {
-  position: relative;
-  margin-top: 40px;
-  left: 50%;
-  margin-left: -380px;
-  width: 760px;
-  height: 300px;
-  text-align: center;
-  color: #333;
-}
-.controls a {
-  text-decoration: none;
-  background: #333;
-  color: var(--color-white);
-  padding: 5px 10px;
-  margin-right: 40px;
-}
-.controls a.down {
-  margin-right: 0;
-}
-.controls h2 {
-  text-transform: uppercase;
-  margin: 40px 0;
-}
-.controls ul li {
-  float: left;
-  width: 40px;
-  height: 20px;
-  background: #333;
-  color: var(--color-white);
-  margin-right: 20px;
-  cursor: pointer;
-}
-.controls ul li:last-child {
-  margin-right: 0;
+  z-index: -1;
 }
 
+.guitar .guitar-container .string .note span{
+  background-color: var(--color-white);
+  padding: 4px 6px  ;
+}
+
+.guitar .guitar-container .string .note[active=true]{
+  background-color: var(--piano-color-active);
+}
+.guitar .guitar-container .string .note[iskey=true]{
+  background-color: var(--piano-color-isKey);
+}
+
+.guitar .guitar-container .string .note[active=true] span{
+  background-color: var(--piano-color-active);
+}
+.guitar .guitar-container .string .note[iskey=true] span{
+  background-color: var(--piano-color-isKey);
+}
+
+.guitar .fret-helper {
+  display: flex;
+  justify-content: space-around;
+}
+
+.guitar .fret-helper .fret-numbers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 4rem;
+  height: 2rem;
+}
 
 .numbers {
   display: flex;
   padding: 1rem 1px;
   justify-content: space-around;
 }
-
-
 
 .tooltip {
   color: var(--color-text);
@@ -520,7 +428,7 @@ a.icon svg {
       background-color: #f3e3e3;
     }
 
-    footer a {
+    .contact a {
       color: var(--color-text);
     }
 }
