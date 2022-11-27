@@ -18,6 +18,10 @@
   --text-size-h3: 20px;
   --container-padding: 0.75em 0.75em 0 0.75em;
   --scale-view-item-margin: 2.5px;
+  --guitar-scale: 1;
+  --scale-view-key-padding: 6px 13px;
+  --scale-view-key-padding: 6px 13px;
+  --instruments-svg-size: 3rem;
 }
 
 .App {
@@ -42,6 +46,7 @@
 }
 
 .main {
+  text-align: center;
 }
 
 .navigation {
@@ -65,10 +70,6 @@
 }
 .search:focus {
   border-color: var(--color-white);
-}
-
-.header-content {
-  text-align: center;
 }
 
 header h2 {
@@ -110,11 +111,12 @@ header h2 {
   color: var(--color-text);
 }
 
-.header-content {
+.scale-info {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 1rem;
 }
 
 a.icon {
@@ -127,8 +129,8 @@ a.icon.visible {
   border-color: var(--color-brown);
 }
 a.icon svg {
-  height: 3.5em;
-  width: 3.5em;
+  height: var(--instruments-svg-size);
+  width: var(--instruments-svg-size);
   fill: var(--color-brown);
 }
 
@@ -136,6 +138,9 @@ a.icon svg {
 .scales-view {
   display: flex;
   flex-direction: column;
+}
+.scale-view {
+  max-width: 80vw;
 }
 .scale-view h3 {
   text-decoration: underline;
@@ -147,7 +152,7 @@ a.icon svg {
   padding: 0.5em 0;
 }
 .scale-view .keys .key {
-  padding: 6px 13px;
+  padding: var(--scale-view-key-padding);
   margin: var(--scale-view-item-margin);
   border: 2px solid var(--piano-color-secondary);
   border-radius: var(--ui-border-radius);
@@ -164,7 +169,7 @@ a.icon svg {
   padding: 0.5em 0;
 }
 .scale-view .modes .mode {
-  padding: 5px 13px;
+  padding: var(--scale-view-key-padding);
   margin: var(--scale-view-item-margin);
   border: 2px solid var(--piano-color-secondary);
   border-radius: var(--ui-border-radius);
@@ -241,6 +246,7 @@ a.icon svg {
 
 /* GUITAR */
 .guitar {
+  transform: scale(var(--guitar-scale));
 }
 
 .guitar .guitar-container {
@@ -258,7 +264,6 @@ a.icon svg {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* flex-direction: row; */
   border-right: 2px solid var(--color-brown);
   width: 4rem;
   height: 2rem;
@@ -266,6 +271,13 @@ a.icon svg {
 .guitar .guitar-container .string .note[fret="0"] {
   border-left: 2px solid var(--color-brown);
 }
+.guitar .guitar-container .string .note[active=true]{
+  background-color: var(--piano-color-active);
+}
+.guitar .guitar-container .string .note[iskey=true]{
+  background-color: var(--piano-color-isKey);
+}
+
 .guitar .guitar-container .string .note p {
   text-align: center;
   flex: 1;
@@ -288,16 +300,8 @@ a.icon svg {
 
 .guitar .guitar-container .string .note span{
   background-color: var(--color-white);
-  padding: 4px 6px  ;
+  padding: 0px 2px;
 }
-
-.guitar .guitar-container .string .note[active=true]{
-  background-color: var(--piano-color-active);
-}
-.guitar .guitar-container .string .note[iskey=true]{
-  background-color: var(--piano-color-isKey);
-}
-
 .guitar .guitar-container .string .note[active=true] span{
   background-color: var(--piano-color-active);
 }
@@ -380,6 +384,8 @@ a.icon svg {
     --piano-key-white-height: 10em;
     --piano-key-margin: -0.56em;
     --piano-key-font-size: 14px;
+    --guitar-scale: 0.4;
+    --scale-view-key-padding: 0 6px;
   }
 }
 
@@ -391,7 +397,8 @@ a.icon svg {
     --piano-key-white-height: 12em;
     --piano-key-margin: -0.67em;
     --piano-key-font-size: 16px;
-
+    --guitar-scale: 0.5;
+    --scale-view-key-padding: 0 6px;
   }
 }
 
@@ -402,6 +409,8 @@ a.icon svg {
   * {
     --piano-key-white-height: 16em;
     --piano-key-margin: -0.89em;
+    --guitar-scale: 0.7;
+    --scale-view-key-padding: 0 6px;
   }
 }
 
@@ -412,9 +421,10 @@ a.icon svg {
   * {
     --piano-key-white-height: 20em;
     --piano-key-margin: -1.12em;
+    --guitar-scale: 0.8;
+    --scale-view-key-padding: 3px 9px;
   }
 }
-
 
 @media only screen
   and (max-width: 1200px)
