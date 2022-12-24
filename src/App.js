@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import './App.css';
-import { chromaticScale, chromaticScaleExtended, modes } from './scales';
+import { modes } from './scales/modes';
+import { chromaticScale, chromaticScaleExtended } from './scales/chromaticScales';
 import { Contact } from './Footer';
 
 
