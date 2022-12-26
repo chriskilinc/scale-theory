@@ -1,0 +1,27 @@
+.tooltip {
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: 12px;
+  padding: 0px 6px;
+  margin-left: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  border: 2px solid  var(--color-text);
+}
+.tooltip:hover {
+  position: relative;
+  cursor: pointer;
+}
+.tooltip-bottom:hover:after{
+  background: var(--color-brown);
+  font-size: var(--text-size-default);
+  content: attr(data-tooltip);
+  padding: 6px 12px;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  white-space: nowrap;
+  color: var(--color-white);
+  border-radius: 4px;
+}

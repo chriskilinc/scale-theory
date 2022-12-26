@@ -1,0 +1,39 @@
+.scale-selection {
+  max-width: 80vw;
+}
+.scale-selection h3 {
+  text-decoration: underline;
+}
+.scale-selection .keys {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0.5em 0;
+}
+.scale-selection .keys .key {
+  padding: var(--scale-view-key-padding);
+  margin: var(--scale-view-item-margin);
+  border: 2px solid var(--piano-color-secondary);
+  border-radius: var(--ui-border-radius);
+  color: var(--color-text);
+}
+.scale-selection .keys .key.current {
+  border-color: var(--piano-color-isKey);
+}
+
+.scale-selection .modes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0.5em 0;
+}
+.scale-selection .modes .mode {
+  padding: var(--scale-view-key-padding);
+  margin: var(--scale-view-item-margin);
+  border: 2px solid var(--piano-color-secondary);
+  border-radius: var(--ui-border-radius);
+  color: var(--color-text);
+}
+.scale-selection .modes .mode.current {
+  border-color: var(--piano-color-isKey);
+}

@@ -1,0 +1,12 @@
+.scale-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.scale-info .scale-name {
+  display: flex;
+  padding-bottom: 6px;
+}

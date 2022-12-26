@@ -1,0 +1,66 @@
+.piano.hidden{
+  display: none;
+}
+
+.piano .piano-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.piano .key {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
+
+.piano .key:last-child {
+  border-radius: 0 var(--ui-border-radius) var(--ui-border-radius) 0;
+}
+
+.piano .key:first-child {
+  border-radius: var(--ui-border-radius) 0 0 var(--ui-border-radius);
+}
+
+.piano .key.E,.D,.G,.A,.B {
+  margin:0 0 0 var(--piano-key-margin)
+}
+
+.piano .key p {
+  padding: 1em 0;
+  font-size: var(--piano-key-font-size);
+}
+
+.piano .key.white {
+  height: var(--piano-key-white-height);
+  width: var(--piano-key-white-width);
+  z-index:1;
+  color: var(--piano-color-secondary);
+  background:linear-gradient(to bottom,var(--color-white) 0%, var(--piano-color-primary) 100%);
+}
+
+.piano .key.black{
+  height:var(--piano-key-black-height);
+  width:var(--piano-key-black-width);
+  margin:0 0 0 var(--piano-key-margin);
+  z-index:2;
+  color: var(--piano-color-primary);
+  background:linear-gradient(45deg,var(--piano-color-secondary) 50%,#000 100%);
+}
+.piano .key.black span {
+  padding: 1em 0;
+}
+.piano .key.black p {
+  padding: 0;
+}
+
+.piano .key[active=true] {
+  background: var(--piano-color-active);
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  color: var(--piano-color-secondary);
+}
+.piano .key[iskey="true"] {
+  background: var(--piano-color-isKey);
+  text-decoration: underline;
+}

@@ -1,0 +1,25 @@
+.instruments-options {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.instruments-options .icon {
+    padding: 0 0.5em;
+}
+
+.instruments-options a.icon {
+    display: inline-flex;
+    flex-direction: column;
+    border: 2px solid var(--color-white);
+    border-radius: var(--ui-border-radius);
+}
+
+.instruments-options a.icon.visible {
+    border-color: var(--color-brown);
+}
+
+.instruments-options a.icon svg {
+    height: var(--instruments-svg-size);
+    width: var(--instruments-svg-size);
+    fill: var(--color-brown);
+}

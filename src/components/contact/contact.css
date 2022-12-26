@@ -1,0 +1,14 @@
+.contact {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+  }
+  .contact a {
+    color: var(--color-text);
+  }
+
+  @media only screen
+  and (max-width: 1200px)
+  {
+    .contact a {
+      color: var(--color-text);
+    }
+}
