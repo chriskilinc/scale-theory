@@ -1,5 +1,6 @@
 .scale-selection {
   max-width: 80vw;
+  text-align: center;
 }
 .scale-selection h3 {
   text-decoration: underline;

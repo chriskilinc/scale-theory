@@ -6,11 +6,15 @@ import { Contact } from './components/contact/contact';
 import { InstrumentToggle } from './components/instrument-toggle/instrument-toggle';
 import { ScaleSelection } from './components/scale-selecton/scale-selection';
 import { ScaleInfo } from './components/scale-info/scale-info';
-import { Piano } from './components/piano/piano';
+import { Piano } from './components/piano-new/piano';
 import { Guitar } from './components/guitar/guitar';
+import caretUp from './assets/caret-up.svg';
+import caretDown from './assets/caret-down.svg';
+
+//  TODO: https://github.com/Tonejs/Tone.js
 
 function App() {
-  const [selectedKey, setSelectedKey] = useState("C");
+  const [selectedKey, setSelectedKey] = useState("D");
   const [selectedMode, setSelectedMode] = useState(modes[0].name);
   const [scale, setScale] = useState();
   const [piano, setPiano] = useState([]);
@@ -19,11 +23,13 @@ function App() {
   const [scalesVisible, setScalesVisible] = useState(true);
   const [toggleInstrument, setToggleInstrument] = useState(true);  // true = piano / false = guitar
   const [instrumentsVisible, setInstrumentsVisible] = useState(true);
+  const [footerExpanded, setFooterExpanded] = useState(false);
+  const [synthIsOn, setSynthIsOn] = useState(false);
 
   const getArrangedChromaticScaleByKey = (key) => {
-    const noteIndex = chromaticScaleExtended.findIndex((note) => note == key);
-    const newScale = chromaticScaleExtended.slice(noteIndex, chromaticScale.length);
-    newScale.push(...chromaticScaleExtended.slice(0, noteIndex));
+    const noteIndex = chromaticScale.findIndex((note) => note == key);
+    const newScale = chromaticScale.slice(noteIndex, chromaticScale.length);
+    newScale.push(...chromaticScale.slice(0, noteIndex));
     return newScale;
   }
 
@@ -63,24 +69,45 @@ function App() {
 
   return (
     scale ?
-      <div className="App">
-        <div className="wrapper">
-          <header className="container">
-            <InstrumentToggle toggleInstrument={toggleInstrument} setToggleInstrument={setToggleInstrument} />
+      <div className={`App ${synthIsOn ? "playable" : ""}`}>
+        {/* <div className="wrapper"> */}
+        {/* <header className="container">
+            <InstrumentToggle visible={!synthIsOn} toggleInstrument={toggleInstrument} setToggleInstrument={setToggleInstrument} />
+          </header> */}
+        <main className="main container">
+          {/* <ScaleSelection visible={scalesVisible && !synthIsOn} selectedKey={selectedKey} selectedMode={selectedMode}
+              setSelectedKey={setSelectedKey} setSelectedMode={setSelectedMode} /> */}
+          <header className="header">
+            {/* <p>hey</p> */}
+            {!synthIsOn && <ScaleInfo scale={scale} selectedKey={selectedKey} synthIsOn={synthIsOn} />}
+
           </header>
-          <main className="main container">
-            <ScaleSelection visible={scalesVisible} selectedKey={selectedKey} selectedMode={selectedMode} 
-              setSelectedKey={setSelectedKey} setSelectedMode={setSelectedMode} />
-            <div className={`instruments ${instrumentsVisible ? 'visible' : 'hidden'}`}>
-              <Piano piano={piano} scale={scale} toggleInstrument={toggleInstrument} />
-              <Guitar guitar={guitar} scale={scale} getArrangedChromaticScaleByKey={getArrangedChromaticScaleByKey} 
-                 toggleInstrument={toggleInstrument}  />
-            </div>
-            <ScaleInfo scale={scale}/>
-            <Contact />
-          </main>
-        </div>
-      </div >
+          <section className={`instruments ${instrumentsVisible ? 'visible' : 'hidden'}`}>
+            <Piano piano={piano} scale={scale} toggleInstrument={toggleInstrument} isPlayable={synthIsOn} setIsPlayable={setSynthIsOn} />
+            <Guitar guitar={guitar} scale={scale} getArrangedChromaticScaleByKey={getArrangedChromaticScaleByKey}
+              toggleInstrument={toggleInstrument} />
+            {/* <ScaleInfo scale={scale} /> */}
+            {synthIsOn && <ScaleInfo scale={scale} selectedKey={selectedKey} synthIsOn={synthIsOn} />}
+
+          </section>
+          {/* <Contact /> */}
+        </main>
+
+        {/* </div> */}
+        {/* <footer className={`footer ${footerExpanded ? 'expanded' : 'closed'}`}>
+          <div className="content">
+            <p>content</p>
+          </div>
+          <div className="expand-wrapper">
+            <button onClick={() => setFooterExpanded(!footerExpanded)}>{footerExpanded ?
+              <span><img src={caretDown} /></span>
+              :
+              <span><img src={caretUp} /></span>
+            }
+            </button>
+          </div>
+        </footer> */}
+      </div>
       :
       <p>loading...</p>
   );

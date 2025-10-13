@@ -1,9 +1,14 @@
 .scale-info {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
+  width: 80%;
+}
+
+.scale-info[playable="true"] {
+  flex-direction: row;
 }
 
 .scale-info .scale-name {
